@@ -37,7 +37,7 @@ param(
  $ResourceGroupLocation,
 
  [string]
- $TemplateFilePath
+ $TemplateFilePath = 'C:\GitHub\Sentia\Templates\keyvault.json'
 )
 
 $AzModuleVersion = "2.0.0"
@@ -116,6 +116,7 @@ $subnetName = $vnet.Subnets.name
 $keyVaultName = $appName+"KeyVault01"
 $appID=(Get-AzADServicePrincipal -DisplayName $($appName+"WebApp")).Id
 $tenantID=$context.Tenant.Id
+$appID = '64c7dccc-753b-47af-b2fb-afbfd4175cde'
 
 $keyVaultParams = @"
 {
@@ -208,9 +209,9 @@ $keyVaultParams = @"
 }
 "@
 
+$ParameterFile = [System.Io.Path]::GetTempFileName()
+Set-Content -Path $ParameterFile -Value $keyVaultParams
+
 Write-Host "Starting deployment...";
-if(Test-Path $ParametersFilePath) {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath -TemplateParameterFile $ParametersFilePath;
-} else {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath;
-}
+
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath -TemplateParameterFile $ParameterFile;
