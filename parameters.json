@@ -1,0 +1,23 @@
+{
+    "parameters": {
+        "location": {
+            "value": "centralus"
+        },
+        "ApplicationName": {
+            "value": "Sentia"
+        },
+      "Subscription": {
+        "value": "9ce087a0-8e0e-47bd-a423-2a96d5a4a317"
+        },
+        "AddressRange": {
+            "value": "10.10.10.0/24"
+        },
+      "Resources": {
+        "value": [
+          "KeyVault",
+          "Storage",
+          "WebApp"
+        ]
+        }
+    }
+}

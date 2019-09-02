@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "centralus"
+        },
+        "storageAccountName": {
+            "value": "seniabb"
+        },
+        "accountType": {
+            "value": "Standard_RAGRS"
+        },
+        "kind": {
+            "value": "StorageV2"
+        },
+        "accessTier": {
+            "value": "Hot"
+        },
+        "supportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "networkAclsBypass": {
+            "value": "AzureServices"
+        },
+        "networkAclsDefaultAction": {
+            "value": "Deny"
+        },
+        "networkAclsVirtualNetworkRules": {
+            "value": [
+                {
+                    "id": "/subscriptions/9ce087a0-8e0e-47bd-a423-2a96d5a4a317/resourceGroups/RG-Sentia-centralus/providers/Microsoft.Network/virtualNetworks/VN-Sentia-centralus/subnets/Sentia-centralus-default"
+                }
+            ]
+        },
+        "isHnsEnabled": {
+            "value": true
+        }
+    }
+}

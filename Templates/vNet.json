@@ -1,0 +1,68 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the application, used as base for object names and tags"
+      }
+    },
+    "location": {
+      "type": "string"
+    },
+    "addressPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "IPv4 Subnet and mask"
+      }
+    }
+  },
+  "variables": {
+    "VNETName": "[concat(parameters('appName'),'-',parameters('location'))]",
+    "VNETNameFull": "[concat('VN-',variables('VNETName'))]",
+    "SubnetName": "[concat(variables('VNETName'),'-','default')]",
+    "RouteTableName": "[concat(resourceGroup().location,'-default')]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-04-01",
+      "name": "[variables('VNETNameFull')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[parameters('location')]",
+      "tags": {
+        "[parameters('appName')]": "vnet"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('SubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('addressPrefix')]",
+              "addressPrefixes": []
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "VnetObjectID": {
+      "value": "[resourceId('Microsoft.Network/virtualNetworks',variables('VNETNameFull'))]",
+      "type": "string"
+    },
+    "VnetName": {
+      "value": "[variables('VNETNameFull')]",
+      "type": "string"
+    },
+    "SubnetName": {
+      "value": "[variables('SubnetName')]",
+      "type": "string"
+    }
+  }
+}

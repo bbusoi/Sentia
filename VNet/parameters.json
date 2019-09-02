@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "Sentia"
+        },
+        "location": {
+            "value": "centralus"
+        },
+        "resourceGroup": {
+            "value": "Sentia"
+        },
+        "addressPrefix": {
+            "value": "10.10.10.0/24"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "subnetAddressPrefix": {
+            "value": "10.10.10.0/24"
+        },
+        "enableDdosProtection": {
+            "value": false
+        }
+    }
+}

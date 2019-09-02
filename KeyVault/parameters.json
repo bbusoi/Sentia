@@ -1,0 +1,88 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "sentiaKeyVault01"
+        },
+        "location": {
+            "value": "centralus"
+        },
+        "sku": {
+            "value": "Standard"
+        },
+        "accessPolicies": {
+            "value": [
+                {
+                    "objectId": "79e8d669-2160-43f3-9541-d6f2f629f38c",
+                    "tenantId": "99970014-1cd0-43d5-81a2-e2e5fa9dc1bd",
+                    "permissions": {
+                        "keys": [
+                            "Get",
+                            "List",
+                            "UnwrapKey",
+                            "Update",
+                            "Create",
+                            "Import",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore"
+                        ],
+                        "secrets": [
+                            "Get",
+                            "List",
+                            "Set",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore"
+                        ],
+                        "certificates": [
+                            "Get",
+                            "List",
+                            "Update",
+                            "Create",
+                            "Import",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore",
+                            "ManageContacts",
+                            "ManageIssuers",
+                            "GetIssuers",
+                            "ListIssuers",
+                            "SetIssuers",
+                            "DeleteIssuers"
+                        ]
+                    },
+                    "applicationId": null
+                }
+            ]
+        },
+        "tenant": {
+            "value": "99970014-1cd0-43d5-81a2-e2e5fa9dc1bd"
+        },
+        "enabledForDeployment": {
+            "value": false
+        },
+        "enabledForTemplateDeployment": {
+            "value": true
+        },
+        "enabledForDiskEncryption": {
+            "value": false
+        },
+        "networkAcls": {
+            "value": {
+                "defaultAction": "Deny",
+                "bypass": "AzureServices",
+                "ipRules": [],
+                "virtualNetworkRules": [
+                    {
+                        "id": "/subscriptions/9ce087a0-8e0e-47bd-a423-2a96d5a4a317/resourceGroups/RG-Sentia-centralus/providers/Microsoft.Network/virtualNetworks/VN-Sentia-centralus/subnets/Sentia-centralus-default"
+                    }
+                ]
+            }
+        }
+    }
+}
