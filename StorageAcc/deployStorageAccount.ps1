@@ -152,7 +152,7 @@ $StorageParams = @"
         "location": {
             "value": "centralus"
         },
-        "storageAccountName": {
+        "AccName": {
             "value": "$storageAccountName"
         },
         "accountType": {

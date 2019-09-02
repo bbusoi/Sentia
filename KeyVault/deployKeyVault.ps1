@@ -113,8 +113,8 @@ $vnetName = $vnet.Name
 $subnetName = $vnet.Subnets.name
 
 
-$keyVaultName = $appName+"KeyVault01"
-$appID=(Get-AzADServicePrincipal -DisplayName $($appName+"WebApp")).Id
+$keyVaultName = $appName+"KeyVault03"
+$appID=(Get-AzADServicePrincipal -DisplayName $($appName+"ID")).Id
 $tenantID=$context.Tenant.Id
 $appID = '64c7dccc-753b-47af-b2fb-afbfd4175cde'
 
@@ -123,7 +123,7 @@ $keyVaultParams = @"
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "name": {
+        "keyVaultName": {
             "value": "$keyVaultName"
         },
         "location": {

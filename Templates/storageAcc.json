@@ -5,7 +5,7 @@
     "location": {
       "type": "string"
     },
-    "storageAccountName": {
+    "AccName": {
       "type": "string"
     },
     "accountType": {
@@ -39,7 +39,7 @@
           "dependsOn": [],
           "kind": "[parameters('kind')]",
           "location": "[parameters('location')]",
-          "name": "[parameters('storageAccountName')]",
+          "name": "[parameters('AccName')]",
           "properties": {
             "accessTier": "[parameters('accessTier')]",
             "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
