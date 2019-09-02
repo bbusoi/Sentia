@@ -2,10 +2,11 @@
  $Subscription="9ce087a0-8e0e-47bd-a423-2a96d5a4a317"
  $addressPrefix="10.10.10.0/24"
  $ResourceGroupLocation="centralus"
- $templatePath = "D:\Scripting\Sentia\Templates\"
+ $templatePath = "C:\github\Sentia\Templates\"
 
  . .\VNet\deployVnet.ps1
  . .\StorageAcc\deployStorageAccount.ps1
+ . .\KeyVault\deployKeyVault.ps1
 
  # sign in
 $context = Get-AzContext
@@ -46,4 +47,8 @@ Deploy-DataLake $appName $Subscription $rgName $ResourceGroupLocation $($templat
 
 $password = Read-Host -Prompt "Imput ServicePrincipal Password" -AsSecureString
 $credentials = New-Object Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$password}
-$sp = New-AzAdServicePrincipal -DisplayName $($appName+"WebApp") -PasswordCredential $credentials
+$sp = New-AzAdServicePrincipal -DisplayName $($appName+"WebApp01") -PasswordCredential $credentials
+
+#deploy KeyVault
+
+Deploy-KeyVault $Subscription $rgName $ResourceGroupLocation

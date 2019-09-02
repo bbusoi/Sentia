@@ -23,6 +23,7 @@
  .PARAMETER ParametersFilePath
     Optional, path to the parameters file. Defaults to parameters.json. If file is not found, will prompt for parameter values based on template.
 #>
+Function Deploy-KeyVault{
 
 param(
  [Parameter(Mandatory=$True)]
@@ -214,4 +215,6 @@ Set-Content -Path $ParameterFile -Value $keyVaultParams
 
 Write-Host "Starting deployment...";
 
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath -TemplateParameterFile $ParameterFile;
+New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath -TemplateParameterFile $ParameterFile;
+
+}
