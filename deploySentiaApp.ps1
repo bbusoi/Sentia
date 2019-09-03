@@ -2,11 +2,12 @@
  $Subscription="9ce087a0-8e0e-47bd-a423-2a96d5a4a317"
  $addressPrefix="10.10.10.0/24"
  $ResourceGroupLocation="centralus"
- $templatePath = "C:\github\Sentia\Templates\"
+ $templatePath = "D:\Scripting\Sentia\Templates\"
 
  . .\VNet\deployVnet.ps1
  . .\StorageAcc\deployStorageAccount.ps1
  . .\KeyVault\deployKeyVault.ps1
+ . .\WebApp\deployWebApp.ps1
 
  # sign in
 $context = Get-AzContext
@@ -51,4 +52,16 @@ $sp = New-AzAdServicePrincipal -DisplayName $($appName+"WebApp01") -PasswordCred
 
 #deploy KeyVault
 
-Deploy-KeyVault $Subscription $rgName $ResourceGroupLocation
+Deploy-KeyVault $Subscription $rgName $ResourceGroupLocation $($templatePath+"keyvault.json")
+
+#deploy WebApp
+
+Deploy-WebApp $Subscription $rgName $ResourceGroupLocation $($templatePath+"webApp.json")
+
+#configure WebApp
+
+$webApp = Get-AzWebApp
+    Write-Host "Creating App association to VNET"
+    $propertiesObject = @{
+     "vnetResourceId" = "/subscriptions/$($Subscription)/resourceGroups/$($rgName)/providers/Microsoft.Network/virtualNetworks/$($vnName)"
+     }
