@@ -94,7 +94,7 @@
                 ],
                 "backendAddressPools": [
                     {
-                        "name": "SentiaBackendPool",
+                        "name": "SentiaBackend",
                         "properties": {
                             "backendAddresses": [
                                 {
@@ -106,7 +106,7 @@
                 ],
                 "backendHttpSettingsCollection": [
                     {
-                        "name": "SentiaHttp",
+                        "name": "SentiaHTTP",
                         "properties": {
                             "Port": 80,
                             "Protocol": "Http",
@@ -117,7 +117,7 @@
                 ],
                 "httpListeners": [
                     {
-                        "name": "Sentialistener",
+                        "name": "SentiaListener",
                         "properties": {
                             "frontendIPConfiguration": {
                                 "id": "[concat(variables('applicationGatewayId'), '/frontendIPConfigurations/appGwPublicFrontendIp')]"
@@ -132,17 +132,17 @@
                 ],
                 "requestRoutingRules": [
                     {
-                        "Name": "defaultRoute",
+                        "Name": "rule1",
                         "properties": {
                             "RuleType": "Basic",
                             "httpListener": {
-                                "id": "[concat(variables('applicationGatewayId'), '/httpListeners/Sentialistener')]"
+                                "id": "[concat(variables('applicationGatewayId'), '/httpListeners/SentiaListener')]"
                             },
                             "backendAddressPool": {
-                                "id": "[concat(variables('applicationGatewayId'), '/backendAddressPools/SentiaBackendPool')]"
+                                "id": "[concat(variables('applicationGatewayId'), '/backendAddressPools/SentiaBackend')]"
                             },
                             "backendHttpSettings": {
-                                "id": "[concat(variables('applicationGatewayId'), '/backendHttpSettingsCollection/SentiaHttp')]"
+                                "id": "[concat(variables('applicationGatewayId'), '/backendHttpSettingsCollection/SentiaHTTP')]"
                             }
                         }
                     }

@@ -24,7 +24,7 @@
             "value": []
         },
         "publicIpAddressName": {
-            "value": "SentiaPubIP"
+            "value": "SentiaPublicIP"
         },
         "sku": {
             "value": "Standard"
