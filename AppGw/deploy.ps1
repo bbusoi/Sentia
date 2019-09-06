@@ -37,10 +37,10 @@ param(
  $ResourceGroupLocation,
 
  [string]
- $TemplateFilePath = "template.json",
+ $TemplateFilePath = ".\appgw\template.json",
 
  [string]
- $ParametersFilePath = "parameters.json"
+ $ParametersFilePath = ".\appgw\parameters.json"
 )
 
 $AzModuleVersion = "2.0.0"
@@ -72,9 +72,15 @@ It was not found, please install from: https://docs.microsoft.com/en-us/powershe
 } 
 
 # sign in
-Write-Host "Logging in...";
-Connect-AzAccount; 
-
+$context = Get-AzContext
+If (!$context){
+    Write-Host "Session not logged in. Loggin in...."
+    Connect-AzAccount; 
+    }
+Else {
+    Write-Host "Session is already logged in...."
+    }
+ 
 # select subscription
 Write-Host "Selecting subscription '$Subscription'";
 Select-AzSubscription -Subscription $Subscription;

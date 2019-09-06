@@ -10,7 +10,6 @@
  . .\StorageAcc\deployStorageAccount.ps1
  . .\KeyVault\deployKeyVault.ps1
  . .\WebApp\deployWebApp.ps1
- . .\AppGw\deployAppGw.ps1
 
  # sign in
 $context = Get-AzContext
@@ -63,7 +62,7 @@ Deploy-WebApp $Subscription $rgName $ResourceGroupLocation $($templatePath+"webA
 
 #deploy AppGw
 
-DeployAppGw $appName $Subscription $rgName $ResourceGroupLocation $($templatePath+"AppGw.json")
+. .\AppGw\deploy.ps1 $Subscription $rgName $ResourceGroupLocation
 
 #configure WebApp
 
